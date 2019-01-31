@@ -143,7 +143,7 @@ public class KioskActivity extends CordovaActivity {
             am = ((ActivityManager)getSystemService("activity"));
         }
         am.moveTaskToFront(getTaskId(), 1);
-        //sendBroadcast(new Intent("android.intent.action.CLOSE_SYSTEM_DIALOGS"));
+        sendBroadcast(new Intent("android.intent.action.CLOSE_SYSTEM_DIALOGS"));
         collapseNotifications();
     }
     
@@ -161,13 +161,12 @@ public class KioskActivity extends CordovaActivity {
             return;
         }
         if (!hasFocus) {
-            /*if(am == null) {
+            if(am == null) {
                 am = ((ActivityManager)getSystemService("activity"));
             }
             am.moveTaskToFront(getTaskId(), 1);
-            //sendBroadcast(new Intent("android.intent.action.CLOSE_SYSTEM_DIALOGS"));
+            sendBroadcast(new Intent("android.intent.action.CLOSE_SYSTEM_DIALOGS"));
             collapseNotifications();
-            */
         }
     }
 
