@@ -38,12 +38,23 @@
             </feature>
         </config-file>
 
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+          <provider android:name="jk.cordova.plugin.kiosk.FileProvider" 
+                    android:authorities="${applicationId}.kiosk.fileprovider" 
+                    android:exported="false" 
+                    android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" 
+                       android:resource="@xml/path" />
+          </provider>
+        </config-file>
+
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.REORDER_TASKS" />
             <uses-permission android:name="android.permission.GET_TASKS" />
             <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
             <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
             <uses-permission android:name="android.permission.SET_PREFERRED_APPLICATIONS"/>
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
                 <activity
@@ -68,6 +79,9 @@
         <source-file src="android/KioskActivity.java" target-dir="src/jk/cordova/plugin/kiosk" />
         <source-file src="android/KioskPlugin.java" target-dir="src/jk/cordova/plugin/kiosk" />
         <source-file src="android/FakeHome.java" target-dir="src/jk/cordova/plugin/kiosk" />
+        <source-file src="android/xml/path.xml" target-dir="res/xml" />
+        <source-file src="android/FileProvider.java" target-dir="src/jk/cordova/plugin/kiosk" />
+        <source-file src="android/FileOpener2.java" target-dir="src/jk/cordova/plugin/kiosk" />
 
     </platform>
 

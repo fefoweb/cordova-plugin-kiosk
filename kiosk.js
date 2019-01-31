@@ -10,6 +10,12 @@ var KioskPlugin = {
     killApp: function () {
         exec(null, null, "KioskPlugin", "killApp", []);
     },
+
+    open: function (fileName, contentType, callbackContext) {
+        contentType = contentType || '';
+        callbackContext = callbackContext || {};
+        exec(callbackContext.success || null, callbackContext.error || null, 'KioskPlugin', 'open', [fileName, contentType]);
+    },
     
     isInKiosk: function (callback) {
         exec(function(out){

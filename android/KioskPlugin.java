@@ -20,6 +20,8 @@ import java.util.TimerTask;
 import org.json.JSONArray;
 import org.json.JSONException;
 import jk.cordova.plugin.kiosk.KioskActivity;
+import jk.cordova.plugin.kiosk.FileOpener2;
+
 import com.t3hh4xx0r.haxlauncher.FakeHome;
 import org.json.JSONObject;
 import android.preference.PreferenceManager;
@@ -27,6 +29,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import java.util.ArrayList;
 import java.util.List;
+
+import android.util.Log;
 
 public class KioskPlugin extends CordovaPlugin {
     
@@ -39,6 +43,8 @@ public class KioskPlugin extends CordovaPlugin {
     public static final String INIT_KIOSK = "initKiosk";
 
     private static final String PREF_KIOSK_MODE = "pref_kiosk_mode";
+
+    public static final String OPEN_FILE = "open";
     
     /**
      * method checks to see if app is currently set as default launcher
@@ -125,6 +131,18 @@ public class KioskPlugin extends CordovaPlugin {
 
               callbackContext.success();
               return true;
+            } else if (OPEN_FILE.equals(action)) {
+                String fileUrl = args.getString(0);
+                String contentType = args.getString(1);
+                Boolean openWithDefault = true;
+                if(args.length() > 2){
+                    openWithDefault = args.getBoolean(2);
+                }
+
+                Log.d("fileOpener", "CALLED ACTION - " + fileUrl + " # " +contentType + " - " + callbackContext);
+
+                FileOpener2 file = new FileOpener2();
+                file._open(fileUrl, contentType, openWithDefault, callbackContext);
             }
             callbackContext.error("Invalid action");
             return false;
