@@ -59,7 +59,7 @@ public class KioskActivity extends CordovaActivity {
         KioskActivity.toAndroidLog("checkDrawOverlayPermission");
 
         if (!Settings.canDrawOverlays(this.getApplicationContext())) {
-            Log.d(TAG, "checkDrawOverlayPermission - dentro if");
+            KioskActivity.toAndroidLog("checkDrawOverlayPermission - dentro if");
 
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + getPackageName()));
